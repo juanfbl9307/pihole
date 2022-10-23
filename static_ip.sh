@@ -1,22 +1,4 @@
-sudo apt-get update
-sudo apt-get upgrade -y
-sudo apt-get install -y git
-
-## docker install
-curl -fsSL https://get.docker.com | sh
-sudo usermod -aG docker pi
-
-## install docker-compose
-sudo apt-get install libffi-dev libssl-dev -y
-sudo apt install python3-dev -y
-sudo apt-get install python3 python3-pip -y
-
-##reboot
-sudo python3 -m pip install docker-compose
-
-sudo systemctl enable docker
-
-
+echo "SETTING STATIC IP FOR RASPBERRY 192.168.1.90/24"
 ##setting static ip
 IFS=' ' read -r -a array <<< $(ip r | grep "default via")
 DNS_IP=$(grep "nameserver" /etc/resolv.conf  | sed 's/^.* //' | head -1)
@@ -69,4 +51,4 @@ static domain_name_servers=$DNS_IP
 static ip_address=192.168.1.90/24
 EOF
 
-sudo reboot
+echo "RASPBERRY INITIAL CONFIG SET"

@@ -1,9 +1,6 @@
-sudo su
-
-docker-compose up -d
-
-
-cat << EOF > /etc/systemd/system/pihole.service
+sudo docker-compose up -d
+sudo chmod -R o+w /etc/systemd/system
+sudo cat << EOF > /etc/systemd/system/pihole.service
 [Unit]
 Description=Docker Compose Application Service
 Requires=docker.service
@@ -20,3 +17,4 @@ TimeoutStartSec=0
 [Install]
 WantedBy=multi-user.target
 EOF
+sudo chmod -R o-w /etc/systemd/system
