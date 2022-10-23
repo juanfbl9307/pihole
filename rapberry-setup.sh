@@ -1,6 +1,6 @@
 sudo apt-get update
 sudo apt-get upgrade -y
-sudo apt install git -y
+sudo apt-get install -y git
 
 ## docker install
 curl -fsSL https://get.docker.com | sh
