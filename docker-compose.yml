@@ -1,5 +1,14 @@
 version: "3"
 services:
+  portainer:
+    container_name: portainer
+    image: portainer/portainer-ce:latest
+    restart: always
+    ports:
+      - '9000:9000'
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
   nginx-proxy:
     user: root
     container_name: nginx-proxy
@@ -13,11 +22,26 @@ services:
       - /var/run/docker.sock:/tmp/docker.sock:ro
       - certs:/etc/nginx/certs:ro
       - confd:/etc/nginx/conf.d
+      - ./nginx:/etc/nginx/conf.d
       - vhostd:/etc/nginx/vhost.d
       - html:/usr/share/nginx/html
     restart: always
     labels:
       - com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_prox
+  homeassistant:
+    container_name: homeassistant
+    image: "ghcr.io/home-assistant/home-assistant:stable"
+    volumes:
+      - ./homeassistant:/config
+      - /etc/localtime:/etc/localtime:ro
+    restart: unless-stopped
+    privileged: true
+    environment:
+      - TZ=America/Bogota
+    ports:
+      - '8123:8123/tcp'
+    depends_on:
+      - nginx-proxy
   cert-manager:
     user: root
     container_name: cert
@@ -65,3 +89,5 @@ volumes:
   html:
   certs:
   acme:
+  portainer_data:
+  home_assistant_data:
