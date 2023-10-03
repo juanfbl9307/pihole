@@ -7,3 +7,5 @@ homeassistant/*.log*
 nginx/default.conf
 homeassistant/.storage
 .idea
+homeassistant/*.db*
+homeassistant/blueprints
