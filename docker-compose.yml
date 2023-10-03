@@ -57,6 +57,7 @@ services:
       DEFAULT_EMAIL: juanfbbl9307@gmail.com
   pihole:
     container_name: pihole
+    pull_policy: always
     image: pihole/pihole:latest
     ports:
       - '53:53/tcp'
