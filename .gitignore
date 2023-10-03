@@ -6,3 +6,4 @@ homeassistant/*.log
 homeassistant/*.log*
 nginx/default.conf
 homeassistant/.storage
+.idea
