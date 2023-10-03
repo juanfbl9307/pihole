@@ -1,0 +1,8 @@
+homeassistant/.*
+homeassistant/.*
+etc-dnsmasq.d
+etc-pihole
+homeassistant/*.log
+homeassistant/*.log*
+nginx/default.conf
+homeassistant/.storage
